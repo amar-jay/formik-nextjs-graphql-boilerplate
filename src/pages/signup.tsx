@@ -11,6 +11,7 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
+import React from 'react';
 import { Container } from "../components/layout/Container";
 import { NavBar } from "../components/layout/NavBar";
 import { Main } from "../components/Main";
@@ -38,7 +39,7 @@ const Index = () => (
     <NavBar path={"/"} />
     <Main>
       <Heading textAlign={"center"} paddingTop={"4rem"} textDecoration={'underline'} textDecorationColor={useColorModeValue('whatsapp.700', 'blackAlpha.900')}>
-        Login
+      Sign Up
       </Heading>
       <Flex
         height={"100vh"}
@@ -64,7 +65,27 @@ const Index = () => (
                       isInvalid={form.errors.name && form.touched.name}
                     >
                       <FormLabel htmlFor="name" paddingBottom={3}>
-                        Name / Email
+                        Name
+                      </FormLabel>
+                      <Input
+                        {...field}
+                        id="name"
+                        placeholder="name"
+                        maxW={"100%"}
+                      />
+                      <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                    </FormControl>
+                  </>
+                )}
+              </Field>
+              <Field name="name" validate={validateName}>
+                {({ field, form }) => (
+                  <>
+                    <FormControl
+                      isInvalid={form.errors.name && form.touched.name}
+                    >
+                      <FormLabel htmlFor="name" paddingBottom={3}>
+                        Email
                       </FormLabel>
                       <Input
                         {...field}
@@ -78,6 +99,7 @@ const Index = () => (
                 )}
               </Field>
 
+ 
               {/*--------- */}
               <Field name="password" validate={validatePassword}>
                 {({ field, form }) => (
@@ -91,7 +113,6 @@ const Index = () => (
                       <Input
                         {...field}
                         id="password"
-                        placeholder="password"
                         type={"password"}
                       />
                       <FormErrorMessage>
@@ -101,6 +122,26 @@ const Index = () => (
                   </>
                 )}
               </Field>
+               <Field name="name" validate={validatePassword}>
+                {({ field, form }) => (
+                  <>
+                    <FormControl
+                      isInvalid={form.errors.name && form.touched.name}
+                    >
+                      <FormLabel htmlFor="name" paddingBottom={3}>
+                        Enter Password Again
+                      </FormLabel>
+                      <Input
+                        {...field}
+                        id="name"
+                        maxW={"100%"}
+                      />
+                      <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                    </FormControl>
+                  </>
+                )}
+              </Field>
+
               <Button
                 mt={4}
                 colorScheme="whatsapp"

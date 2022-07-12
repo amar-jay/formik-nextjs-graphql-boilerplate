@@ -11,13 +11,21 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React from 'react';
+import React from "react";
 import { Container } from "../components/layout/Container";
 import { NavBar } from "../components/layout/NavBar";
 import { Main } from "../components/Main";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import { Field, Form, Formik } from "formik";
-
+function validateEmail(value: unknown) {
+  let error;
+  if (!value) {
+    error = "Email is required";
+  } else if (value == null) {
+    error = "It's blank.";
+  }
+  return error;
+}
 function validateName(value: unknown) {
   let error;
   if (!value) {
@@ -38,8 +46,16 @@ const Index = () => (
   <Container height="100vh">
     <NavBar path={"/"} />
     <Main>
-      <Heading textAlign={"center"} paddingTop={"4rem"} textDecoration={'underline'} textDecorationColor={useColorModeValue('whatsapp.700', 'blackAlpha.900')}>
-      Sign Up
+      <Heading
+        textAlign={"center"}
+        paddingTop={"4rem"}
+        textDecoration={"underline"}
+        textDecorationColor={useColorModeValue(
+          "whatsapp.700",
+          "blackAlpha.900"
+        )}
+      >
+        Sign Up
       </Heading>
       <Flex
         height={"100vh"}
@@ -64,57 +80,43 @@ const Index = () => (
                     <FormControl
                       isInvalid={form.errors.name && form.touched.name}
                     >
-                      <FormLabel htmlFor="name" paddingBottom={3}>
+                      <FormLabel htmlFor="name" paddingBottom={1}>
                         Name
                       </FormLabel>
-                      <Input
-                        {...field}
-                        id="name"
-                        placeholder="name"
-                        maxW={"100%"}
-                      />
+                      <Input {...field} id="name" placeholder="name" />
                       <FormErrorMessage>{form.errors.name}</FormErrorMessage>
                     </FormControl>
                   </>
                 )}
               </Field>
-              <Field name="name" validate={validateName}>
+              <Field name="email" validate={validateEmail}>
                 {({ field, form }) => (
                   <>
                     <FormControl
-                      isInvalid={form.errors.name && form.touched.name}
+                      isInvalid={form.errors.email && form.touched.email}
                     >
-                      <FormLabel htmlFor="name" paddingBottom={3}>
+                      <FormLabel htmlFor="email" paddingBottom={1}>
                         Email
                       </FormLabel>
-                      <Input
-                        {...field}
-                        id="name"
-                        placeholder="name"
-                        maxW={"100%"}
-                      />
-                      <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                      <Input {...field} id="email" placeholder="name" />
+                      <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                     </FormControl>
                   </>
                 )}
               </Field>
 
- 
               {/*--------- */}
               <Field name="password" validate={validatePassword}>
                 {({ field, form }) => (
                   <>
                     <FormControl
+                      // isInvalid={true}
                       isInvalid={form.errors.password && form.touched.password}
                     >
-                      <FormLabel htmlFor="password" paddingY={3}>
+                      <FormLabel htmlFor="password" paddingY={1}>
                         Password
                       </FormLabel>
-                      <Input
-                        {...field}
-                        id="password"
-                        type={"password"}
-                      />
+                      <Input {...field} id="password" type={"password"} />
                       <FormErrorMessage>
                         {form.errors.password}
                       </FormErrorMessage>
@@ -122,29 +124,28 @@ const Index = () => (
                   </>
                 )}
               </Field>
-               <Field name="name" validate={validatePassword}>
+              <Field name="secondpassword" validate={validatePassword}>
                 {({ field, form }) => (
                   <>
                     <FormControl
-                      isInvalid={form.errors.name && form.touched.name}
+                      // isInvalid={true}
+                      isInvalid={form.errors.secondpassword && form.touched.secondpassword}
                     >
-                      <FormLabel htmlFor="name" paddingBottom={3}>
+                      <FormLabel htmlFor="name" paddingBottom={1}>
                         Enter Password Again
                       </FormLabel>
-                      <Input
-                        {...field}
-                        id="name"
-                        maxW={"100%"}
-                      />
-                      <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                      <Input {...field} id="name" type={"password"} />
+                      <FormErrorMessage>
+                        {form.errors.secondpassword}
+                      </FormErrorMessage>
                     </FormControl>
                   </>
                 )}
               </Field>
 
               <Button
-                mt={4}
-                colorScheme="whatsapp"
+                m={7}
+                colorScheme={useColorModeValue("whatsapp", "gray")}
                 isLoading={props.isSubmitting}
                 type="submit"
               >

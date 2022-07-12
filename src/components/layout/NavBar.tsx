@@ -45,8 +45,10 @@ export const NavBar: React.FC<{
           mt={{ base: 4, md: 0 }}
           alignItems="flex-end"
         >
-          <Box p={4}>
+          <Box p={4} justifyContent={"flex-end"} paddingRight={"1vw"} flex={1}>
             <NavButton href="/" path={path} children="Home" />
+            <NavButton href="/login" path={path} children="Login" />
+            <NavButton href="/signup" path={path} children="SignUp" />
           </Box>
           <DarkModeSwitch />
         </Stack>

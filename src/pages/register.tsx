@@ -9,7 +9,7 @@ import {
 import { CheckCircleIcon, LinkIcon } from "@chakra-ui/icons";
 
 import { Container } from "../components/layout/Container";
-import { Main } from "../components/Main";
+import { Main } from "../components/layout/Main";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
 
 const Index = () => (

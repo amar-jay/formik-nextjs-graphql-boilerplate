@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { Container } from "../components/layout/Container";
 import { NavBar } from "../components/layout/NavBar";
-import { Main } from "../components/Main";
+import { Main } from "../components/layout/Main";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import { Field, Form, Formik } from "formik";
 
@@ -37,7 +37,15 @@ const Index = () => (
   <Container height="100vh">
     <NavBar path={"/"} />
     <Main>
-      <Heading textAlign={"center"} paddingTop={"4rem"} textDecoration={'underline'} textDecorationColor={useColorModeValue('whatsapp.700', 'blackAlpha.900')}>
+      <Heading
+        textAlign={"center"}
+        paddingTop={"4rem"}
+        textDecoration={"underline"}
+        textDecorationColor={useColorModeValue(
+          "whatsapp.700",
+          "blackAlpha.900"
+        )}
+      >
         Login
       </Heading>
       <Flex
@@ -47,71 +55,7 @@ const Index = () => (
         justifyContent={"space-around"}
         flexDir={"row"}
       >
-        <Formik
-          initialValues={{ name: "" }}
-          onSubmit={(values, actions) => {
-            window.setTimeout(() => {
-              actions.setSubmitting(false);
-            }, 1000);
-          }}
-        >
-          {(props) => (
-            <Form>
-              <Field name="name" validate={validateName}>
-                {({ field, form }) => (
-                  <>
-                    <FormControl
-                      isInvalid={form.errors.name && form.touched.name}
-                    >
-                      <FormLabel htmlFor="name" paddingBottom={3}>
-                        Name / Email
-                      </FormLabel>
-                      <Input
-                        {...field}
-                        id="name"
-                        placeholder="name"
-                        maxW={"100%"}
-                      />
-                      <FormErrorMessage>{form.errors.name}</FormErrorMessage>
-                    </FormControl>
-                  </>
-                )}
-              </Field>
-
-              {/*--------- */}
-              <Field name="password" validate={validatePassword}>
-                {({ field, form }) => (
-                  <>
-                    <FormControl
-                      isInvalid={form.errors.password && form.touched.password}
-                    >
-                      <FormLabel htmlFor="password" paddingY={3}>
-                        Password
-                      </FormLabel>
-                      <Input
-                        {...field}
-                        id="password"
-                        placeholder="password"
-                        type={"password"}
-                      />
-                      <FormErrorMessage>
-                        {form.errors.password}
-                      </FormErrorMessage>
-                    </FormControl>
-                  </>
-                )}
-              </Field>
-              <Button
-                mt={4}
-                colorScheme="whatsapp"
-                isLoading={props.isSubmitting}
-                type="submit"
-              >
-                Submit
-              </Button>
-            </Form>
-          )}
-        </Formik>
+        This is the Home page.
       </Flex>
     </Main>
   </Container>
